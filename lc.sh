@@ -2,7 +2,7 @@
 #  lc.sh - A simplified logcat script.
 
 # Include the shell script that contains the function to select a device
-source $HOME/dev/git/shell-scripts/adbwrapper-func.sh
+source $SHELL_SCRIPTS_HOME/adbwrapper-func.sh
 
 # Grab the device to use
 selectDevice SELECTED_DEVICE
