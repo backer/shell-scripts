@@ -52,6 +52,12 @@ then
 	exit 1
 fi
 
+if [ $(adb devices | grep -c -v 'List of devices attached') -gt 2 ] ;
+	then
+		echo "ERROR: more than 1 device/emulator"
+		exit 1
+fi
+
 echo "dumping heap of ${PROCESS} to file: ${FILENAME}"
 adb shell "am dumpheap ${PROCESS} /data/local/tmp/${FILENAME}-unconverted.hprof"
 waitForFile
@@ -64,5 +70,7 @@ then
 	echo "converting to standard hprof"
 	hprof-conv -z ${FILENAME}-unconverted.hprof ${FILENAME}-standard.hprof
 fi
+
+echo "heap dump finished"
 
 exit 0
